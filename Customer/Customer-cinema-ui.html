@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ <link rel="stylesheet" href="Customer-cinema-ui.css">
+</head>
+<body>
+   <div class="header">
+  <div class="logo">
+    <span class="logo-name">CinemaX</span>
+  </div>
+  <div class="header-right">
+    <p id="date-lbl"></p>
+    <select id="movie-sel" onchange="changeMovie()">
+      <option value="0">Dune: Part Three</option>
+      <option value="1">Echoes of Tomorrow</option>
+      <option value="2">The Last Horizon</option>
+    </select>
+  </div>
+</div>
+ 
+<div class="layout">
+ 
+  <!-- CINEMA PANEL -->
+  <div class="cinema-card">
+    <div class="screen-wrap">
+      <div class="screen-bar"></div>
+      <div class="screen-lbl">projection screen</div>
+    </div>
+ 
+    <div class="hall" id="seat-grid"></div>
+ 
+    <div class="floor-labels">
+      <span>Left Section</span>
+      <span>← Center Aisle →</span>
+      <span>Right Section</span>
+    </div>
+ 
+    <div class="seat-count-note" id="seat-count-note">224 seats total · End Stage · Sloped floor</div>
+ 
+    <div class="legend">
+      <div class="leg"><div class="leg-box" style="background:#d1fae5;border-color:#34d399;"></div>Available</div>
+      <div class="leg"><div class="leg-box" style="background:#fef3c7;border-color:#fbbf24;"></div>VIP (rows E–G)</div>
+      <div class="leg"><div class="leg-box" style="background:#7c3aed;border-color:#5b21b6;"></div>Selected</div>
+      <div class="leg"><div class="leg-box" style="background:#d97706;border-color:#92400e;"></div>VIP selected</div>
+      <div class="leg"><div class="leg-box" style="background:#e5e7eb;border-color:#9ca3af;"></div>Taken</div>
+    </div>
+  </div>
+ 
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+ 
+    <div class="card">
+      <div class="card-title">Now showing</div>
+      <div class="movie-name" id="mv-name">Dune: Part Three</div>
+      <div class="movie-meta" id="mv-meta">2h 48m &nbsp;|&nbsp; PG-13<br>Hall A &nbsp;|&nbsp; 4K Dolby</div>
+      <div class="badge badge-purple" id="mv-genre">Sci-Fi</div>
+    </div>
+ 
+    <div class="card">
+      <div class="card-title">Showtime</div>
+      <div class="showtime-grid">
+        <button class="st-btn active" onclick="pickTime(this)">10:30 AM</button>
+        <button class="st-btn" onclick="pickTime(this)">1:15 PM</button>
+        <button class="st-btn" onclick="pickTime(this)">4:00 PM</button>
+        <button class="st-btn" onclick="pickTime(this)">7:45 PM</button>
+      </div>
+      <div class="cap-bar-wrap">
+        <div class="cap-labels"><span>Occupancy</span><span id="cap-txt">0% full</span></div>
+        <div class="track"><div class="fill" id="cap-fill" style="width:0%"></div></div>
+      </div>
+    </div>
+ 
+    <div class="card">
+      <div class="card-title">Seat stats</div>
+      <div class="stats-grid">
+        <div class="stat"><div class="stat-num green" id="st-avail">224</div><div class="stat-lbl">Available</div></div>
+        <div class="stat"><div class="stat-num amber" id="st-sel">0</div><div class="stat-lbl">Selected</div></div>
+        <div class="stat"><div class="stat-num red" id="st-taken">0</div><div class="stat-lbl">Taken</div></div>
+      </div>
+    </div>
+ 
+    <div class="card">
+      <div class="card-title">Your selection</div>
+      <div class="seat-tags" id="sel-tags"><div class="no-sel">No seats selected yet</div></div>
+    </div>
+ 
+    <div class="card">
+      <div class="card-title">Summary</div>
+      <div class="price-rows">
+        <div class="price-row"><span id="std-lbl">Standard (0 × 12)</span><span id="std-amt">$0.00</span></div>
+        <div class="price-row"><span id="vip-lbl">VIP (0 × 22)</span><span id="vip-amt">$0.00</span></div>
+        <div class="price-row total"><span>Total</span><span id="total-amt">$0.00</span></div>
+      </div>
+      <button class="book-btn" id="book-btn" onclick="confirmBooking()" disabled>Confirm Booking</button>
+      <div class="toast-wrap"><div class="toast" id="toast"></div></div>
+    </div>
+ 
+  </div>
+</div>
+ <script src="Cutsomer-cinema-ui.js"></script>
+</body>
+</html>
