@@ -2,11 +2,24 @@ DROP DATABASE IF EXISTS MySeat_DB;
 CREATE DATABASE MySeat_DB;
 USE MySeat_DB;
 
+CREATE TABLE tblGenre (
+    genreID   INT         PRIMARY KEY AUTO_INCREMENT,
+    genreName VARCHAR(50) NOT NULL UNIQUE
+);
 CREATE TABLE tblMovie (
-    movieID    INT PRIMARY KEY AUTO_INCREMENT,
+    movieID    INT          PRIMARY KEY AUTO_INCREMENT,
     title      VARCHAR(100) NOT NULL,
     duration   VARCHAR(20),
     rating     VARCHAR(10)
+);
+
+CREATE TABLE tblMovieGenre (
+    movieGenreID INT PRIMARY KEY AUTO_INCREMENT,
+    movieID      INT NOT NULL,
+    genreID      INT NOT NULL,
+    CONSTRAINT UC_MovieGenre UNIQUE (movieID, genreID),
+    FOREIGN KEY (movieID) REFERENCES tblMovie(movieID) ON DELETE CASCADE,
+    FOREIGN KEY (genreID) REFERENCES tblGenre(genreID) ON DELETE CASCADE
 );
 
 CREATE TABLE tblCinema (
@@ -88,6 +101,9 @@ CREATE TABLE tblAdminLog (
                       'MovieAdded',
                       'MovieEdited',
                       'MovieDeleted',
+                      'GenreAdded',
+                      'GenreEdited',
+                      'GenreDeleted',
                       'ShowtimeAdded',
                       'ShowtimeEdited',
                       'ShowtimeDeleted',
@@ -101,6 +117,8 @@ CREATE TABLE tblAdminLog (
     remarks         VARCHAR(255),
     FOREIGN KEY (adminID) REFERENCES tblAdmin(adminID)
 );
+
+
 
 
 -- CREATE DATABASE IF NOT EXISTS MySeat_DB;
